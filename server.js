@@ -26,7 +26,11 @@ app.use(session({
 }));
 
 app.get('/', function(req, res, next){
-  res.render('index');
+	res.render('index');
+});
+
+app.get('/test', function(req, res, next){
+	res.render('test')
 });
 
 app.listen(3000, function(){
