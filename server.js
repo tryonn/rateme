@@ -18,16 +18,20 @@ app.set('view engine', 'ejs');
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
 app.use(session({
   secret:'Thisismytestkey',
   resave: false,
-  saveUninitialized: false
-  //store: new MongoSore({mongooseConnection: mongoose.connection})
+  saveUninitialized: false,
+  store: new MongoStore({mongooseConnection: mongoose.connection})
 }));
 
-app.get('/', function(req, res, next){
+//adicionando novas rotas que estao na pasta route
+require('./routes/user')(app);
+
+/*app.get('/', function(req, res, next){
 	res.render('index');
-});
+});*/
 
 app.get('/test', function(req, res, next){
 	res.render('test')
