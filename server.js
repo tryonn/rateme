@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var MongoStore = require('connect-mongo')(session);
 
 
-var app = express();
+var app = express()
 
 mongoose.connect('mongodb://localhost/rateme');
 
