@@ -9,6 +9,12 @@ module.exports = (app) => {
 		res.render('user/signup', {title: 'Sign Up || RateMe'});
 	});
 
+	app.post('/signup', passport.authenticate('local.signup', {
+		succeddRedirect: '/',
+		failureRedirect: '/signup',
+		failureFlash: true
+	}));
+
 	app.get('/login', (req, res) => {
 		res.render('user/login', {title: 'Login || RateMe'});
 	});
