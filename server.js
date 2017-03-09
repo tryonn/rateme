@@ -14,14 +14,14 @@ var app = express();
 
 mongoose.connect('mongodb://localhost/rateme'); // conectando ao host
 
-require('./config/passport');
-
 app.use(express.static('public'));
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+require('./config/passport');
 
 app.use(session({
   secret:'Thisismytestkey',
@@ -31,15 +31,11 @@ app.use(session({
 }));
 
 app.use(flash()); //utilizando connect-flash
-app.use(passport.initializer());
+app.use(passport.initialize());
 app.use(passport.session());
 
 //adicionando novas rotas que estao na pasta route
-require('./routes/user')(app);
-
-/*app.get('/', function(req, res, next){
-	res.render('index');
-});*/
+require('./routes/user')(app, passport);
 
 app.get('/test', function(req, res, next){
 	res.render('test')

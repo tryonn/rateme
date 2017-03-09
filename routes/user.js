@@ -1,5 +1,5 @@
 
-module.exports = (app) => {
+module.exports = (app, passport) => {
 
 	app.get('/', function(req, res, next){
 		res.render('index', {title: 'Index || RateMe'});
@@ -14,7 +14,7 @@ module.exports = (app) => {
 		failureRedirect: '/signup',
 		failureFlash: true
 	}));
-
+	
 	app.get('/login', (req, res) => {
 		res.render('user/login', {title: 'Login || RateMe'});
 	});
